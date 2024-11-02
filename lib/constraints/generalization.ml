@@ -261,7 +261,7 @@ module Make (Label : Comparable.S) (Former : Type_former.S) = struct
   (* [set_region type_] adds [type_] to it's region (defined by [type_]'s level). *)
   let set_region state type_ =
     let level = level type_ in
-    Vec.set_exn state.regions level (type_ :: Vec.get_exn state.regions level)
+    Vec.set state.regions level (type_ :: Vec.get state.regions level)
 
 
   let make ~state structure =
@@ -479,7 +479,7 @@ module Make (Label : Comparable.S) (Former : Type_former.S) = struct
   (* [young_region state] returns the [young_region] encoding of [state] *)
 
   let young_region ~state : young_region =
-    let region = Vec.get_exn state.regions state.current_level in
+    let region = Vec.get state.regions state.current_level in
     let region_arr = Array.of_list region in
     let by_level =
       Array.sorted_copy region_arr ~compare:(fun t1 t2 ->
@@ -710,7 +710,7 @@ module Make (Label : Comparable.S) (Former : Type_former.S) = struct
       fun root -> { root; level }
     in
     (* Clear the young region now *)
-    Vec.set_exn state.regions state.current_level [];
+    Vec.set state.regions state.current_level [];
     (* Exit the current region *)
     state.current_level <- state.current_level - 1;
     Log.debug (fun m -> m "State after exit:\n%a" pp_state state);
