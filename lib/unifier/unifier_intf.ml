@@ -80,7 +80,7 @@ module type S = sig
   val unify : ctx:Type.t ctx -> Type.t -> Type.t -> unit
 end
 
-(** The interface of {unifier.ml}. *)
+(** The interface of {!unifier.ml}. *)
 
 module type Intf = sig
   module type S = S

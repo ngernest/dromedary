@@ -14,31 +14,32 @@
 open! Import
 
 (** This module defines the notion of a "computation".
-    
+
     A computation ['a Computation.t] represents the context for computing
-    a value of type ['a] during constrain generation. 
+    a value of type ['a] during constrain generation.
 
     A computation is defined generically, by the following DSL:
-      types         τ ::= τ -> τ | τ computation | τ binder | τ constraint 
+    {[
+      types         τ ::= τ -> τ | τ computation | τ binder | τ constraint
                         | ... (standard OCaml types)
 
       expressions   e ::= x | λ x. e | e e | ... (standard OCaml expressions)
                         | { t } | [ u ]
-      
+
       computation   t ::= let x = t; t | bind x = u; t | return e | ...
       commands
-      
-      binder        u ::= let x = u; u | sub x = t; u | return e 
+
+      binder        u ::= let x = u; u | sub x = t; u | return e
       commands          | exists | forall | ...
-    
+    ]}
+
     The above introduces the notion of ['a Binder.t], which encapsulates
     the notion of binding context.
-    
-    With the applicative syntax for a ['a Constraint.t], we use several "hacks"
-    for [Let_syntax] to implement the above DSL using [ppx_let] with some let-operators.  
 
-    TODO: Investigate implementation of a custom PPX. 
-*)
+    With the applicative syntax for a ['a Constraint.t], we use several "hacks"
+    for [Let_syntax] to implement the above DSL using [ppx_let] with some let-operators.
+
+    TODO: Investigate implementation of a custom PPX. *)
 
 module type S = sig
   (** A computation ['a Computation.t] represents a monadic computation

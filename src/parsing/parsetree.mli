@@ -148,7 +148,7 @@ val pp_case_mach : case Fmt.t
 (** [pp_case ppf case] prety prints the case [case] as a syntactic representation. *)
 val pp_case : case Fmt.t
 
-(** External value descriptions {| external x : T = "prim" |} *)
+(** External value descriptions [ external x : T = "prim" ] *)
 type value_description =
   { pval_name : string
   ; pval_type : core_scheme

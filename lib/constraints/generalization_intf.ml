@@ -196,7 +196,7 @@ module type S = sig
     -> variables * scheme list
 end
 
-(** The interface of {generalization.ml}. *)
+(** The interface of {!generalization.ml}. *)
 
 module type Intf = sig
   module type S = S
