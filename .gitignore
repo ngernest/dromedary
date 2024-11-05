@@ -36,3 +36,4 @@ benchmark/results/
 
 # bisect coverage reports
 _coverage/
+.DS_Store
